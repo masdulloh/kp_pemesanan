@@ -5,3 +5,5 @@ Kerja Praktek
 
 besok harus di edit dulu
  Inputan form dll
+ Semangat woi KP DILIT NEH RAMPUNGGG
+ hmmm
