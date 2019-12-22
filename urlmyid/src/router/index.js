@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Beranda from '@/components/home/Beranda'
+import Products from '@/components/home/Products'
+import Orders from '@/components/home/Orders'
+
 import Signup from '@/components/auth/Signup'
 import Login from '@/components/auth/Login'
+
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -13,6 +18,22 @@ const router = new Router({
       path: '/',
       name: 'Beranda',
       component: Beranda,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/products',
+      name: 'Products',
+      component: Products,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/orders',
+      name: 'Orders',
+      component: Orders,
       meta: {
         requiresAuth: true
       }

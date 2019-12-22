@@ -1,13 +1,13 @@
 <template>
-    <div class="beranda">
-        <h2>Home</h2>
+    <div class="product">
+        <h2>Product</h2>
     </div>
 </template>
 
 <script>
 import firebase from 'firebase'
 export default {
-    name: 'Beranda',
+    name: 'Products',
     data(){
         return{
 
