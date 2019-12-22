@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Beranda from '@/components/home/Beranda'
-import Products from '@/components/home/Products'
+
+import Products from '@/components/products/Products'
 import Orders from '@/components/home/Orders'
 
 import Signup from '@/components/auth/Signup'
