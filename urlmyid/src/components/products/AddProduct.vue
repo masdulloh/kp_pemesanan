@@ -1,7 +1,7 @@
 <template>
-    <div class="product">
-        <h2>Product</h2>
-        <router-link :to="{ name:'AddProduct' }"><button type="button" class="btn btn-success">+Add Product</button></router-link>
+    <div class="addproduct">
+        <h2>Add Product</h2>
+        
     </div>
 </template>
 
