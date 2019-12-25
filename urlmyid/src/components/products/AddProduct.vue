@@ -1,7 +1,12 @@
 <template>
     <div class="addproduct">
         <h2>Add Product</h2>
+<!-- KODE INPUTAN FORM -->
         
+
+
+        
+<!-- __________________ end kode inputan form -->
     </div>
 </template>
 
