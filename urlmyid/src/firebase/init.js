@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 //import * as firebase from 'firebase/app'
 import firestore from 'firebase/firestore'
+import storage from 'firebase/storage'
 
 
 // Kode firebase auth dari firebase

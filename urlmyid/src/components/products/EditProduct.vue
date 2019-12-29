@@ -1,10 +1,10 @@
 <template>
-    <div class="addproduct">
-        <h2>Add Product</h2>
+    <div class="editproduct">
+        <h2>Edit Product</h2>
 <!-- KODE INPUTAN FORM -->
         
 
-    <form @submit.prevent="addProduct">
+    <form @submit.prevent="editProduct">
     <div class="form-group">
         <label for="text">Product Name</label> 
         <input id="text" name="text" type="text" required="required" class="form-control" v-model="pname">
@@ -93,7 +93,7 @@ import firebase from 'firebase'
 
 
 export default {
-    name: 'AddProducts',
+    name: 'EditProducts',
     data(){
         return{
             profile:null,
@@ -105,69 +105,44 @@ export default {
             pprice: 0,
             pcogs: 0,
             pweight: 0,
-            plocation: null,
+            ploc: [],
             pprovince: null,
             pcity: null,
             psubdistrict: null,
+            
 
             feedback: null
         }
     },
     created(){
       
-        let ref = db.collection('users')
+        let ref = db.collection('products')
 
         //get current user
-        ref.where('user_id','==', firebase.auth().currentUser.uid).get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-            this.user = doc.data(),
-            this.user.id = doc.id
-            })
+        ref.doc(this.$route.params.id).get()
+        .then(doc => {
+            if (!doc.exists) {
+                console.log('No such document!');
+            } else {
+                console.log('Document data:', doc.data());
+                this.pname = doc.data().pname
+                this.plink = doc.data().plink
+                this.price = doc.data().price
+                this.pcogs = doc.data().pcogs
+
+                this.pweight = doc.data().pweight
+
+                this.ploc=doc.data().ploc
+                console.log(doc.data().ploc)
+                this.pprovince = this.ploc.province
+                console.log(this.ploc.province)
+                this.pcity = this.ploc.city
+                this.psubdistrict = this.ploc.subdistrict
+            }
         })
 
-        //profile data
-        ref.doc(this.$route.params.id).get()
-        .then(user => {
-            this.profile = user.data()
-        })
-      
     },
     methods:{
-        addProduct(){
-            if(this.pname && this.pimage && this.plink && this.pweight && this.pprovince && this.pcity && this.psubdistrict){
-                
-                //let ref2 = db.collection('products').doc(this.plink)
-                //plink=this.plink
-                this.feedback=null
-                let data = {
-                    plink: this.plink,
-                    pimage: this.pimage,
-                    pname: this.pname,
-                    pprice: Number(this.pprice),
-                    pcogs: Number(this.pcogs),
-                    pweight: Number(this.pweight),
-                    ploc: {
-                        province: this.pprovince,
-                        city: this.pcity,
-                        subdistrict: this.psubdistrict,
-                    },
-                    pcreatby: this.user.id
-                }
-
-                db.collection('products').add(data)
-                .then(() => {
-                    this.$router.push({ name: 'Products' })
-                }).catch(err => {
-                    console.log(err)
-                    this.feedback=err.message
-                })
-
-              
-            } else {
-                this.feedback="You must enter all form"
-            }
-        },
         uploadImage(e){
             //Menyimpan gambar
             //pimage=this.pimage;

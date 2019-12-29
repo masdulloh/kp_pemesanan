@@ -5,6 +5,7 @@ import Beranda from '@/components/home/Beranda'
 
 import Products from '@/components/products/Products'
 import AddProduct from '@/components/products/AddProduct'
+import EditProduct from '@/components/products/EditProduct'
 
 import Orders from '@/components/home/Orders'
 
@@ -18,46 +19,54 @@ Vue.use(Router)
 const router = new Router({
   routes: [
     {
-      path: '/',
-      name: 'Beranda',
-      component: Beranda,
-      meta: {
-        requiresAuth: true
-      }
+        path: '/',
+        name: 'Beranda',
+        component: Beranda,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
-      path: '/products',
-      name: 'Products',
-      component: Products,
-      meta: {
-        requiresAuth: true
-      }
+        path: '/products',
+        name: 'Products',
+        component: Products,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
-      path: '/addproduct',
-      name: 'AddProduct',
-      component: AddProduct,
-      meta: {
-        requiresAuth: true
-      }
+        path: '/addproduct',
+        name: 'AddProduct',
+        component: AddProduct,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
-      path: '/orders',
-      name: 'Orders',
-      component: Orders,
-      meta: {
-        requiresAuth: true
-      }
+        path: '/editproduct/:id',
+        name: 'EditProduct',
+        component: EditProduct,
+        meta: {
+          requiresAuth: true
+        }
+      },
+    {
+        path: '/orders',
+        name: 'Orders',
+        component: Orders,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
-      path: '/signup',
-      name: 'Signup',
-      component: Signup
+        path: '/signup',
+        name: 'Signup',
+        component: Signup
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
+        path: '/login',
+        name: 'Login',
+        component: Login
     }
   ]
 })
