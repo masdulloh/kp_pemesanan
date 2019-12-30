@@ -97,7 +97,7 @@ export default {
     data(){
         return{
             profile:null,
-            user:null,
+            //user:null,
 
             pname:null,
             plink:null,
