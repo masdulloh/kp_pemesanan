@@ -66,6 +66,8 @@ export default {
                 }
             })
         })
+
+        //console.log(this.productdisplay)
     },
     methods:{
         editProduct(id){

@@ -49,14 +49,18 @@
         </div>
         </div>
     </div>
+
+    <!-- Province -->
     <div class="form-group">
         <label for="select">Province</label> 
         <div>
-        <select id="select" name="select" class="custom-select" required="required" v-model="pprovince">
-            <option value="fish" >1</option>
-        </select>
+            <select id="select" name="select" class="custom-select" required="required" v-model="pprovince">
+                <option v-for="(prov, index) in provinsi" :key="index" :value="prov.province_id">{{ prov.province}}</option>
+            </select>
         </div>
     </div>
+
+    <!-- City -->
     <div class="form-group">
         <label for="select1">City</label> 
         <div>
@@ -109,14 +113,34 @@ export default {
             pprovince: null,
             pcity: null,
             psubdistrict: null,
+            
+            provinsi: [],
 
             feedback: null
         }
     },
     created(){
-      
-        let ref = db.collection('users')
 
+        db.collection('provinces').get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+            } 
+            snapshot.forEach(doc => {
+                this.provinsi.unshift({
+                    province_id: doc.data().province_id,
+                    province: doc.data().province
+                })
+                //console.log(doc.id, '=>', doc.data());
+            });
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+        //console.log(this.provinsi)
+        /*
+        let ref = db.collection('users')
         //get current user
         ref.where('user_id','==', firebase.auth().currentUser.uid).get()
         .then(snapshot => {
@@ -131,14 +155,11 @@ export default {
         .then(user => {
             this.profile = user.data()
         })
-      
+        */
     },
     methods:{
         addProduct(){
             if(this.pname && this.pimage && this.plink && this.pweight && this.pprovince && this.pcity && this.psubdistrict){
-                
-                //let ref2 = db.collection('products').doc(this.plink)
-                //plink=this.plink
                 this.feedback=null
                 let data = {
                     plink: this.plink,

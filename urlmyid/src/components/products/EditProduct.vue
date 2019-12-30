@@ -147,8 +147,6 @@ export default {
         */
 
 
-
-
         let ref = db.collection('products')
         //get current product
         ref.doc(this.$route.params.id).get()
